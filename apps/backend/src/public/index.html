@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Socket.io Test</title>
+</head>
+
+<body>
+    <h1>Socket.io WebSocket Test</h1>
+    <input id="input" placeholder="Type a message" />
+    <button onclick="sendMessage()">Send</button>
+    <div id="messages"></div>
+
+    <h1>Real-time Quiz Scores</h1>
+    <div id="scores"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('message', (msg) => {
+            const messages = document.getElementById('messages');
+            const newMessage = document.createElement('div');
+            newMessage.textContent = msg;
+            messages.appendChild(newMessage);
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('input');
+            const message = input.value;
+            socket.emit('message', message);
+            input.value = '';
+        }
+
+        // Join a quiz with a unique quizId
+        const quizId = 'quiz123';
+        const userId = 'user123';
+        socket.emit('join-quiz', { quizId, userId });
+
+        // Listen for score updates
+        socket.on('score-update', (data) => {
+            const { userId, score } = data;
+            console.log(`User ${userId} updated their score: ${score}`);
+
+            const scoreElement = document.getElementById('scores');
+            scoreElement.innerHTML = `<p>User ${userId}: ${score}</p>`;
+        });
+    </script>
+</body>
+
+</html>

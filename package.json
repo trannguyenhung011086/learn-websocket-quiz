@@ -1,0 +1,15 @@
+{
+  "name": "quiz-challenge",
+  "version": "1.0.0",
+  "description": "This is a learning project to create a technical solution for a real-time quiz feature for an English learning application. This feature will allow users to answer questions in real-time, compete with others, and see their scores updated live on a leaderboard.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ]
+}
