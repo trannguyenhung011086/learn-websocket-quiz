@@ -1,6 +1,6 @@
 import express from 'express';
 import http from 'http';
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { pubClient, subClient } from './services/redis';
 import routes from './routes/routes';
@@ -8,6 +8,8 @@ import { quizScoresRepo } from './repo/quizScores.repo';
 import { notFoundHandler } from './middlewares/notFoundHandler';
 import { errorHandler } from './middlewares/errorHandler';
 import path from 'path';
+import { testMessage } from './socketHandlers/testMessage';
+import { joinQuiz } from './socketHandlers/joinQuiz';
 
 const app = express();
 const server = http.createServer(app);
@@ -35,43 +37,21 @@ app.use('/api', routes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// Handle WebSocket connection for each user
-io.on('connection', (socket) => {
+const onConnection = (socket: Socket) => {
   console.log('A user connected');
 
-  // Listen for a test "message" event
-  socket.on('message', (msg) => {
-    console.log('Message received:', msg);
-    socket.emit('message', `Echo: ${msg}`); // Send a response back
-  });
+  // Handle test message
+  testMessage(io, socket);
 
-  // Join a quiz session
-  socket.on('join-quiz', async ({ quizId, userId }: { quizId: string; userId: string }) => {
-    if (!quizId || !userId) {
-      socket.emit('error', 'Missing quizId or userId');
-      return;
-    }
-
-    socket.join(quizId);
-    console.log(`User ${userId} joined quiz: ${quizId}`);
-
-    // Broadcast to the quiz room that a new user has joined
-    io.to(quizId).emit('user-joined', { userId, quizId });
-
-    // Broadcast the current scores to the newly joined user
-    const quizScores = await quizScoresRepo.getByQuizId(quizId);
-    if (quizScores[userId]) {
-      socket.emit('initial-scores', {
-        quizId,
-        scores: quizScores[userId],
-      });
-    }
-  });
+  // Handle join quiz
+  joinQuiz(io, socket);
 
   // Handle disconnect
   socket.on('disconnect', () => {
     console.log('A user disconnected');
   });
-});
+};
+
+io.on('connection', onConnection);
 
 export { app, io, server };
