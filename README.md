@@ -132,6 +132,15 @@ The action of submitting answer will be done through a POST endpoint `/api/submi
 }
 ```
 
+## Test On Local Environment
+
+- Run `npm install` at rool to install dependencies.
+- Change directory to `apps/backend` then run `docker compose up --build` to start server and redis.
+- Change directory to `apps/frontend` then run `npm run dev` to start Vite app.
+- Open `localhost:5173` on browser > input `userId` and `quizId` to join. Should use `quiz123` as quizId because it is hardcoded for testing with scores.
+- Open Postman to make a POST request to `localhost:3000/api/submit-answer` with the samplepayload above.
+- Verify scores updated on browser.
+
 # Walkthrough Videos
 
 > **Note**: Right-click the image and select "Open link in new tab" to view the video.
