@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import io from 'socket.io-client';
 
@@ -52,7 +52,7 @@ const ScoreItem = styled.div`
 function App() {
   const [userId, setUserId] = useState('');
   const [quizId, setQuizId] = useState('');
-  const [scores, setScores] = useState({});
+  const [scores, setScores] = useState<Record<string, number>>({});
 
   // Event listeners for socket
   useEffect(() => {
@@ -61,6 +61,7 @@ function App() {
     });
 
     socket.on('score-update', ({ userId, score }) => {
+      console.log(`Score updated for user ${userId} in quiz ${quizId}: ${score}`);
       setScores((prevScores) => ({ ...prevScores, [userId]: score }));
     });
 
@@ -74,6 +75,7 @@ function App() {
   // Join quiz room handler
   const joinQuiz = () => {
     if (quizId && userId) {
+      setQuizId(quizId);
       socket.emit('join-quiz', { quizId, userId });
     }
   };

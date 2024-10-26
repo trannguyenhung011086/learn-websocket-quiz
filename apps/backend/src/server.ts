@@ -4,7 +4,6 @@ import { Server, Socket } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { pubClient, subClient } from './services/redis';
 import routes from './routes/routes';
-import { quizScoresRepo } from './repo/quizScores.repo';
 import { notFoundHandler } from './middlewares/notFoundHandler';
 import { errorHandler } from './middlewares/errorHandler';
 import path from 'path';

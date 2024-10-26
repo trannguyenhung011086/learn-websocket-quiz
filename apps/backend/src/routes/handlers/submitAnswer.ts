@@ -25,6 +25,7 @@ export async function submitAnswerHandler(req: Request, res: Response) {
     userId,
     score: currentScore,
   });
+  console.log(`Score updated for user ${userId} in quiz ${quizId}: ${currentScore}`);
 
   res.json({
     message: 'Score updated successfully',
