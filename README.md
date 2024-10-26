@@ -132,11 +132,9 @@ The action of submitting answer will be done through a POST endpoint `/api/submi
 }
 ```
 
-# Walkthrough Video
+# Walkthrough Videos
+
+> **Note**: Right-click the image and select "Open link in new tab" to view the video.
 
 - Technical overview: [![technical-overview](https://cdn.loom.com/sessions/thumbnails/4d600cb5da6545478f4cf3474a0460b8-7e3593ff8f1cb363-full-play.gif)](https://www.loom.com/share/4d600cb5da6545478f4cf3474a0460b8?sid=b187862e-a89d-4449-8ab4-812fb1eac967)
 - Implementation: [![technical-implementation](https://cdn.loom.com/sessions/thumbnails/254e5f8f3c3548fa8b322f1ac5ecaebc-c2af173835efa2eb-full-play.gif)](https://www.loom.com/share/254e5f8f3c3548fa8b322f1ac5ecaebc?sid=b8447da1-eba1-46c5-88ac-bc0afcd42d86)
-
-<a href="https://www.loom.com/share/254e5f8f3c3548fa8b322f1ac5ecaebc?sid=b8447da1-eba1-46c5-88ac-bc0afcd42d86" target="_blank">
-  <img src="https://cdn.loom.com/sessions/thumbnails/254e5f8f3c3548fa8b322f1ac5ecaebc-c2af173835efa2eb-full-play.gif" alt="Watch the video" />
-</a>
