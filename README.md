@@ -136,3 +136,4 @@ The action of submitting answer will be done through a POST endpoint `/api/submi
 
 - Technical overview: [![technical-overview](https://cdn.loom.com/sessions/thumbnails/4d600cb5da6545478f4cf3474a0460b8-7e3593ff8f1cb363-full-play.gif)](https://www.loom.com/share/4d600cb5da6545478f4cf3474a0460b8?sid=b187862e-a89d-4449-8ab4-812fb1eac967)
 - Implementation: [![technical-implementation](https://cdn.loom.com/sessions/thumbnails/254e5f8f3c3548fa8b322f1ac5ecaebc-c2af173835efa2eb-full-play.gif)](https://www.loom.com/share/254e5f8f3c3548fa8b322f1ac5ecaebc?sid=b8447da1-eba1-46c5-88ac-bc0afcd42d86)
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/254e5f8f3c3548fa8b322f1ac5ecaebc?sid=00967e01-009f-46c5-96b4-2a575698abc4" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
