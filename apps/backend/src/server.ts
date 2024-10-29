@@ -4,13 +4,13 @@ import routes from './routes/routes';
 import { notFoundHandler } from './middlewares/notFoundHandler';
 import { errorHandler } from './middlewares/errorHandler';
 import path from 'path';
-import { initSocketIo } from './websocket';
+import { initIO } from './websocket';
 
 const app = express();
 const server = http.createServer(app);
 
 // Attach socket.io to the server
-initSocketIo(server);
+initIO(server);
 
 app.use(express.json());
 

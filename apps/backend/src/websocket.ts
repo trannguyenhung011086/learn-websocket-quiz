@@ -7,7 +7,7 @@ import { Server as HttpServer } from 'http';
 
 let io: Server;
 
-export const initSocketIo = async (server: HttpServer) => {
+export const initIO = (server: HttpServer) => {
   io = new Server(server, {
     cors: {
       origin: '*', // Allow all origins for testing purposes
@@ -16,7 +16,7 @@ export const initSocketIo = async (server: HttpServer) => {
   });
 
   // Use Redis adapter to handle pub/sub across Socket.io instances
-  await Promise.all([pubClient.connect(), subClient.connect()])
+  Promise.all([pubClient.connect(), subClient.connect()])
     .then(() => {
       io.adapter(createAdapter(pubClient, subClient));
     })
@@ -45,4 +45,9 @@ export const initSocketIo = async (server: HttpServer) => {
   console.log('Socket.io initialized');
 };
 
-export { io };
+export const getIO = () => {
+  if (!io) {
+    throw new Error('Socket.io is not initialized! Make sure to call initIO first.');
+  }
+  return io;
+};

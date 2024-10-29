@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { processAnswer } from '../../commands/processAnswer';
-import { io } from '../../websocket';
+import { getIO } from '../../websocket';
 
 export async function submitAnswerHandler(req: Request, res: Response) {
   const { quizId, userId, questionId, answerId } = req.body;
@@ -19,6 +19,8 @@ export async function submitAnswerHandler(req: Request, res: Response) {
     res.status(500).json({ message });
     return;
   }
+
+  const io = getIO();
 
   // Broadcast the updated scores to all participants in the quiz room
   io.to(quizId).emit('score-update', {
