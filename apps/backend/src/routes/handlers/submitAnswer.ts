@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { io } from '../../server';
 import { processAnswer } from '../../commands/processAnswer';
+import { io } from '../../websocket';
 
 export async function submitAnswerHandler(req: Request, res: Response) {
   const { quizId, userId, questionId, answerId } = req.body;
